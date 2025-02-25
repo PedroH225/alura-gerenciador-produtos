@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.alura.principal.Principal;
 import com.example.alura.repository.CategoriaRepository;
+import com.example.alura.repository.FornecedorRepository;
 import com.example.alura.repository.PedidoRepository;
 import com.example.alura.repository.ProdutoRepository;
 
@@ -18,12 +19,16 @@ public class GerenciadorPedidosApplication implements CommandLineRunner {
 	
 	private PedidoRepository pedidoRepository;
 	
+	private FornecedorRepository fornecedorRepository;
+
+	
 	public GerenciadorPedidosApplication(CategoriaRepository categoriaRepository, ProdutoRepository produtoRepository,
-			PedidoRepository pedidoRepository) {
+			PedidoRepository pedidoRepository, FornecedorRepository fornecedorRepository) {
 		
 		this.pedidoRepository = pedidoRepository;
 		this.categoriaRepository = categoriaRepository;
 		this.produtoRepository = produtoRepository;
+		this.fornecedorRepository = fornecedorRepository;
 	}
 
 
@@ -33,7 +38,9 @@ public class GerenciadorPedidosApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Principal principal = new Principal(categoriaRepository, produtoRepository, pedidoRepository);
+		Principal principal = new Principal(categoriaRepository, produtoRepository, 
+				pedidoRepository, fornecedorRepository);
+		
 		principal.executar();
 		
 	}
