@@ -2,6 +2,8 @@ package com.example.alura.principal;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Optional;
+import java.util.Scanner;
 
 import com.example.alura.model.Categoria;
 import com.example.alura.model.Fornecedor;
@@ -21,6 +23,8 @@ public class Principal {
 	private PedidoRepository pedidoRepository;
 	
 	private FornecedorRepository fornecedorRepository;
+	
+	private Scanner leitura = new Scanner(System.in);
 
 
 	public Principal(CategoriaRepository categoriaRepository, ProdutoRepository produtoRepository,
@@ -32,7 +36,7 @@ public class Principal {
 		this.fornecedorRepository = fornecedorRepository;
 	}
 
-	public void executar() {
+	public void registrar() {
 		var categoria = new Categoria(null, "Móvel");
 		var fornecedor = new Fornecedor(null, "Móveis & CIA");
 		
@@ -47,4 +51,20 @@ public class Principal {
 		
 		System.out.println(pedidoRepository.findAll());
 	}
+	
+	public void buscarPorNome() {
+		System.out.println("Digite o nome do produto:");
+		String nome = leitura.nextLine();
+		
+		Optional<Produto> buscarProduto = produtoRepository.findByNomeEqualsIgnoreCase(nome);
+		
+		if (buscarProduto.isPresent()) {
+			System.out.println(buscarProduto.get());
+		} else {
+			System.out.println("Produto não encontrado.");
+		}
+	}
 }
+
+
+
