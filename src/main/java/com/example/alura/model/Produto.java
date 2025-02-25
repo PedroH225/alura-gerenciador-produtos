@@ -1,10 +1,16 @@
 package com.example.alura.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,11 +26,23 @@ public class Produto {
 	
 	@Column(name = "valor")
 	private Double preco;
+	
+	@ManyToOne()
+	@JoinColumn(name = "categoria_id")
+	private Categoria categoria;
+	
+	@ManyToMany(mappedBy = "produtos")
+	private List<Pedido> pedido;
 
-	public Produto(String id, String nome, Double preco) {
+	public Produto() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Produto(String id, String nome, Double preco, Categoria categoria) {
 		this.id = id;
 		this.nome = nome;
 		this.preco = preco;
+		this.categoria = categoria;
 	}
 
 	public String getId() {
@@ -49,6 +67,19 @@ public class Produto {
 
 	public void setPreco(Double preco) {
 		this.preco = preco;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	@Override
+	public String toString() {
+		return "Produto [id=" + id + ", nome=" + nome + ", preco=" + preco + ", categoria=" + categoria.getNome() + "]";
 	}
 	
 	

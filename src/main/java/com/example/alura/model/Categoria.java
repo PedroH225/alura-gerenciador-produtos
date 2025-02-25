@@ -1,9 +1,13 @@
 package com.example.alura.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,6 +19,12 @@ public class Categoria {
 	private String id;
 	
 	private String nome;
+	
+	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
+	private List<Produto> produtos;
+	
+	public Categoria() {
+	}
 
 	public Categoria(String id, String nome) {
 		this.id = id;
@@ -35,6 +45,19 @@ public class Categoria {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
+	@Override
+	public String toString() {
+		return "Categoria [id=" + id + ", nome=" + nome + ", produtos=" + produtos + "]";
 	}
 	
 	
