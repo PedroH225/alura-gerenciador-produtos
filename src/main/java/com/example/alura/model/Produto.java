@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,16 +34,21 @@ public class Produto {
 	
 	@ManyToMany(mappedBy = "produtos")
 	private List<Pedido> pedido;
+	
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JoinColumn(name = "fornecedor_id")
+	private Fornecedor fornecedor;
 
 	public Produto() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Produto(String id, String nome, Double preco, Categoria categoria) {
+	public Produto(String id, String nome, Double preco, Categoria categoria, Fornecedor fornecedor) {
 		this.id = id;
 		this.nome = nome;
 		this.preco = preco;
 		this.categoria = categoria;
+		this.fornecedor = fornecedor;
 	}
 
 	public String getId() {
@@ -79,7 +85,8 @@ public class Produto {
 
 	@Override
 	public String toString() {
-		return "Produto [id=" + id + ", nome=" + nome + ", preco=" + preco + ", categoria=" + categoria.getNome() + "]";
+		return "Produto [id=" + id + ", nome=" + nome + ", preco=" + preco +
+				", categoria=" + categoria.getNome() + ", fornecedor=" + fornecedor + "]";
 	}
 	
 	
