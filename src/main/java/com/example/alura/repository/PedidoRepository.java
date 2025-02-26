@@ -1,5 +1,6 @@
 package com.example.alura.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,5 +15,6 @@ public interface PedidoRepository extends JpaRepository<Pedido, String> {
 	
 	List<Pedido> findAllByDataNotNull();
 
+	List<Pedido> findAllByDataAfter(LocalDate data);
 	
 }

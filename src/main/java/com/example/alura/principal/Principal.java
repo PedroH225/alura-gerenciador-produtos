@@ -1,6 +1,8 @@
 package com.example.alura.principal;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -248,6 +250,28 @@ public class Principal {
 			buscarProduto.forEach(System.out::println);
 		} else {
 			System.out.println("Produto não encontrado.");
+		}
+	}
+	
+	public void buscarPorData() {
+		System.out.println("Digite uma data (dd/MM/yyyy):");
+		String dataString = leitura.nextLine();
+		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		
+		try {
+			LocalDate data = LocalDate.parse(dataString, dtf);
+			
+			List<Pedido> buscarPedidos = pedidoRepository.findAllByDataAfter(data);
+			
+			if (!buscarPedidos.isEmpty()) {
+				buscarPedidos.forEach(System.out::println);
+			} else {
+				System.out.println("Nenhum produto encontrado.");
+			}
+			
+		} catch (DateTimeParseException e) {
+			System.out.println("Data inválida: " + dataString);
 		}
 	}
 
