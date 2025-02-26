@@ -44,18 +44,20 @@ public class Principal {
 		var fornecedor = new Fornecedor(null, "Móveis & CIA");
 		var fornecedor2 = new Fornecedor(null, "Eletrônicos & CIA");
 		
-		var produto = new Produto(null, "Cadeira", 200.00, categoria, fornecedor);
+		var produto = new Produto(null, "Monitor", 200.00, categoria2, fornecedor);
 		var produto2 = new Produto(null, "Computador", 2000.00, categoria2, fornecedor2);
 
-		categoria.setProdutos(Arrays.asList(produto));
-		categoria2.setProdutos(Arrays.asList(produto2));
+//		categoria.setProdutos(Arrays.asList(produto));
+		categoria2.setProdutos(Arrays.asList(produto2, produto));
 		
 		var categoriadb = categoriaRepository.save(categoria);
 		var categoriadb2 = categoriaRepository.save(categoria2);
 
 		
-		var pedido = new Pedido(null, LocalDate.now(), categoriadb.getProdutos());
+//		var pedido = new Pedido(null, LocalDate.now(), categoriadb.getProdutos());
+		var pedido = new Pedido(null, null, categoriadb.getProdutos());
 		var pedido2 = new Pedido(null, null, categoriadb2.getProdutos());
+
 
 
 		pedidoRepository.save(pedido);
@@ -140,6 +142,32 @@ public class Principal {
 			System.out.println("Produto não encontrado.");
 		}
 	}
+
+	public void buscarEntregaNotNull() {
+		System.out.println("Produtos com data de entrega:");
+		List<Pedido> buscarPedidos = pedidoRepository.findAllByDataNotNull();
+		
+		if (!buscarPedidos.isEmpty()) {
+			buscarPedidos.forEach(System.out::println);
+		} else {
+			System.out.println("Produto não encontrado.");
+		}
+	}
+	
+	public void buscarPorCategoriaValor() {
+		System.out.println("Digite a categoria do produto:");
+		String categoria = leitura.nextLine();
+		
+		List<Produto> buscarProduto = produtoRepository.findAllByCategoriaNomeOrderByPreco(categoria);
+		
+		if (!buscarProduto.isEmpty()) {
+			buscarProduto.forEach(System.out::println);
+			
+		} else {
+			System.out.println("Produto não encontrado.");
+		}
+	}
+	
 }
 
 
