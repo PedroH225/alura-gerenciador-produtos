@@ -193,5 +193,19 @@ public class Principal {
 			System.out.println("Produto não encontrado.");
 		}
 	}
+	
+	public void countProdutoValor() {
+		System.out.println("Digite o valor do produto:");
+		Double valor = leitura.nextDouble();
+
+		Integer countProduto = produtoRepository.countByPrecoGreaterThanEqual(valor);
+
+		if (countProduto != null) {
+			System.out.println("Há " + countProduto + " produtos registrados com valor maior ou igual " + valor);
+
+		} else {
+			System.out.println("Produto não encontrado.");
+		}
+	}
 
 }
