@@ -298,4 +298,34 @@ public class Principal {
 		}
 	}
 	
+	public void buscarPorDataEntre() {
+		System.out.println("Digite uma data (dd/MM/yyyy):");
+		String dataString = leitura.nextLine();
+		
+		System.out.println("Digite outra data (dd/MM/yyyy):");
+		String dataString2 = leitura.nextLine();
+		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		
+		try {
+			LocalDate data = LocalDate.parse(dataString, dtf);
+			LocalDate data2 = LocalDate.parse(dataString2, dtf);
+
+			
+			List<Pedido> buscarPedidos = pedidoRepository.findAllByDataBetween(data, data2);
+			
+			if (!buscarPedidos.isEmpty()) {
+				System.out.println("Pedidos com data de entrega entre " 
+			+ dataString  + " e " + dataString2 + ":");
+
+				buscarPedidos.forEach(System.out::println);
+			} else {
+				System.out.println("Nenhum produto encontrado.");
+			}
+			
+		} catch (DateTimeParseException e) {
+			System.out.println("Data inválida: " + dataString);
+		}
+	}
+	
 }
