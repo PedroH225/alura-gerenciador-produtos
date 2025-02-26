@@ -168,6 +168,20 @@ public class Principal {
 		}
 	}
 	
+	public void buscarPorCategoriaValorDesc() {
+		System.out.println("Digite a categoria do produto:");
+		String categoria = leitura.nextLine();
+		
+		List<Produto> buscarProduto = produtoRepository.findAllByCategoriaNomeOrderByPrecoDesc(categoria);
+		
+		if (!buscarProduto.isEmpty()) {
+			buscarProduto.forEach(System.out::println);
+			
+		} else {
+			System.out.println("Produto não encontrado.");
+		}
+	}
+	
 }
 
 
