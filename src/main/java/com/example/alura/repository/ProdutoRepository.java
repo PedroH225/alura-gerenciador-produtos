@@ -16,6 +16,7 @@ public interface ProdutoRepository extends JpaRepository<Produto, String>{
 	List<Produto> findAllByPrecoGreaterThanEqual(Double valor);
 	
 	List<Produto> findAllByPrecoLessThanEqual(Double valor);
-
+	
+	Optional<Produto> findByNomeContainsIgnoreCase(String nome);
 	
 }

@@ -78,6 +78,19 @@ public class Principal {
 		}
 	}
 	
+	public void buscarPorTrecho() {
+		System.out.println("Digite um trecho do nome do produto:");
+		String nome = leitura.nextLine();
+		
+		Optional<Produto> buscarProduto = produtoRepository.findByNomeContainsIgnoreCase(nome);
+		
+		if (buscarProduto.isPresent()) {
+			System.out.println(buscarProduto.get());
+		} else {
+			System.out.println("Produto não encontrado.");
+		}
+	}
+	
 	public void buscarPorCategoria() {
 		System.out.println("Digite a categoria do produto:");
 		String categoria = leitura.nextLine();
