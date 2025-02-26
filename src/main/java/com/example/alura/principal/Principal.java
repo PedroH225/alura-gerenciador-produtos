@@ -2,6 +2,7 @@ package com.example.alura.principal;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -38,16 +39,28 @@ public class Principal {
 
 	public void registrar() {
 		var categoria = new Categoria(null, "Móvel");
+		var categoria2 = new Categoria(null, "Eletrônicos");
+		
 		var fornecedor = new Fornecedor(null, "Móveis & CIA");
+		var fornecedor2 = new Fornecedor(null, "Eletrônicos & CIA");
 		
 		var produto = new Produto(null, "Cadeira", 200.00, categoria, fornecedor);
+		var produto2 = new Produto(null, "Computador", 2000.00, categoria2, fornecedor2);
+
 		categoria.setProdutos(Arrays.asList(produto));
+		categoria2.setProdutos(Arrays.asList(produto2));
 		
 		var categoriadb = categoriaRepository.save(categoria);
+		var categoriadb2 = categoriaRepository.save(categoria2);
+
 		
 		var pedido = new Pedido(null, LocalDate.now(), categoriadb.getProdutos());
+		var pedido2 = new Pedido(null, LocalDate.now(), categoriadb2.getProdutos());
+
 
 		pedidoRepository.save(pedido);
+		pedidoRepository.save(pedido2);
+
 		
 		System.out.println(pedidoRepository.findAll());
 	}
@@ -60,6 +73,32 @@ public class Principal {
 		
 		if (buscarProduto.isPresent()) {
 			System.out.println(buscarProduto.get());
+		} else {
+			System.out.println("Produto não encontrado.");
+		}
+	}
+	
+	public void buscarPorCategoria() {
+		System.out.println("Digite a categoria do produto:");
+		String categoria = leitura.nextLine();
+		
+		Optional<Categoria> buscarProduto = categoriaRepository.findByNomeEqualsIgnoreCase(categoria);
+		
+		if (buscarProduto.isPresent()) {
+			System.out.println(buscarProduto.get().getProdutos());
+		} else {
+			System.out.println("Produto não encontrado.");
+		}
+	}
+	
+	public void buscarPorValor() {
+		System.out.println("Digite a valor mínimo do produto:");
+		Double valor = leitura.nextDouble();
+		
+		List<Produto> buscarProduto = produtoRepository.findAllByPrecoGreaterThanEqual(valor);
+		
+		if (!buscarProduto.isEmpty()) {
+			System.out.println(buscarProduto);
 		} else {
 			System.out.println("Produto não encontrado.");
 		}
