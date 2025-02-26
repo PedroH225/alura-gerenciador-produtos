@@ -232,5 +232,23 @@ public class Principal {
 			System.out.println("Produto não encontrado.");
 		}
 	}
+	
+	public void buscarPorValorOuNome() {
+		System.out.println("Digite o nome do produto:");
+		String nome = leitura.nextLine();
+		
+		System.out.println("Digite a valor máximo do produto:");
+		Double valor = leitura.nextDouble();
+
+		List<Produto> buscarProduto = produtoRepository.findAllByPrecoLessThanEqualOrNomeContainsIgnoreCase
+				(valor, nome);
+
+		if (!buscarProduto.isEmpty()) {
+			System.out.println("Produtos com preço menor que o valor fornecido ou cujo nome contenha o termo especificado:");
+			buscarProduto.forEach(System.out::println);
+		} else {
+			System.out.println("Produto não encontrado.");
+		}
+	}
 
 }
