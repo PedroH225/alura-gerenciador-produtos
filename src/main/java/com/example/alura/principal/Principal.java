@@ -44,27 +44,26 @@ public class Principal {
 		var fornecedor = new Fornecedor(null, "Móveis & CIA");
 		var fornecedor2 = new Fornecedor(null, "Eletrônicos & CIA");
 		
-		var produto = new Produto(null, "Monitor", 200.00, categoria2, fornecedor);
+		var produto = new Produto(null, "Monitor", 1000.00, categoria2, fornecedor2);
 		var produto2 = new Produto(null, "Computador", 2000.00, categoria2, fornecedor2);
+		var produto3 = new Produto(null, "Cadeira", 200.00, categoria, fornecedor);
 
-//		categoria.setProdutos(Arrays.asList(produto));
+		categoria.setProdutos(Arrays.asList(produto3));
 		categoria2.setProdutos(Arrays.asList(produto2, produto));
 		
 		var categoriadb = categoriaRepository.save(categoria);
 		var categoriadb2 = categoriaRepository.save(categoria2);
 
 		
-//		var pedido = new Pedido(null, LocalDate.now(), categoriadb.getProdutos());
-		var pedido = new Pedido(null, null, categoriadb.getProdutos());
-		var pedido2 = new Pedido(null, null, categoriadb2.getProdutos());
-
-
+		var pedido = new Pedido(null, LocalDate.now(), categoriadb2.getProdutos());
+		var pedido2 = new Pedido(null, null, Arrays.asList(categoriadb2.getProdutos().get(1)));
+		var pedido3 = new Pedido(null, LocalDate.now(), categoriadb.getProdutos());
 
 		pedidoRepository.save(pedido);
 		pedidoRepository.save(pedido2);
-
+		pedidoRepository.save(pedido3);
 		
-//		System.out.println(pedidoRepository.findAll());
+		System.out.println(pedidoRepository.findAll());
 	}
 	
 	public void buscarPorNome() {
