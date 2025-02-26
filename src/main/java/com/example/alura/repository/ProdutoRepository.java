@@ -22,6 +22,9 @@ public interface ProdutoRepository extends JpaRepository<Produto, String>{
 	List<Produto> findAllByCategoriaNomeOrderByPreco(String categoria);
 	
 	List<Produto> findAllByCategoriaNomeOrderByPrecoDesc(String categoria);
+	
+	Integer countByCategoriaNome(String categoria);
+
 
 	
 }
