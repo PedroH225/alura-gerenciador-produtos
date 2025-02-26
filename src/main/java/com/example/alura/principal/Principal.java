@@ -103,6 +103,19 @@ public class Principal {
 			System.out.println("Produto não encontrado.");
 		}
 	}
+	
+	public void buscarPorValorMaximo() {
+		System.out.println("Digite a valor máximo do produto:");
+		Double valor = leitura.nextDouble();
+		
+		List<Produto> buscarProduto = produtoRepository.findAllByPrecoLessThanEqual(valor);
+		
+		if (!buscarProduto.isEmpty()) {
+			System.out.println(buscarProduto);
+		} else {
+			System.out.println("Produto não encontrado.");
+		}
+	}
 }
 
 

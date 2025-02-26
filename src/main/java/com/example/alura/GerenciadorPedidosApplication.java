@@ -42,7 +42,7 @@ public class GerenciadorPedidosApplication implements CommandLineRunner {
 				pedidoRepository, fornecedorRepository);
 		
 //		principal.registrar();
-		principal.buscarPorValor();
+		principal.buscarPorValorMaximo();
 		
 	}
 
