@@ -275,4 +275,27 @@ public class Principal {
 		}
 	}
 
+	public void buscarPorDataAntes() {
+		System.out.println("Digite uma data (dd/MM/yyyy):");
+		String dataString = leitura.nextLine();
+		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		
+		try {
+			LocalDate data = LocalDate.parse(dataString, dtf);
+			
+			List<Pedido> buscarPedidos = pedidoRepository.findAllByDataBefore(data);
+			
+			if (!buscarPedidos.isEmpty()) {
+				System.out.println("Pedidos com data de entrega antes de " + dataString + ":");
+				buscarPedidos.forEach(System.out::println);
+			} else {
+				System.out.println("Nenhum produto encontrado.");
+			}
+			
+		} catch (DateTimeParseException e) {
+			System.out.println("Data inválida: " + dataString);
+		}
+	}
+	
 }

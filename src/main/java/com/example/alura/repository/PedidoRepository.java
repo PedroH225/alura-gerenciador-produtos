@@ -17,4 +17,6 @@ public interface PedidoRepository extends JpaRepository<Pedido, String> {
 
 	List<Pedido> findAllByDataAfter(LocalDate data);
 	
+	List<Pedido> findAllByDataBefore(LocalDate data);
+
 }
