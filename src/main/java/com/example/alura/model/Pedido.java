@@ -58,6 +58,14 @@ public class Pedido {
 		this.data = data;
 	}
 
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
 	@Override
 	public String toString() {
 		return "Pedido [id=" + id + ", data=" + data + ", produtos=" + produtos + "]";

@@ -55,14 +55,14 @@ public class Principal {
 
 		
 		var pedido = new Pedido(null, LocalDate.now(), categoriadb.getProdutos());
-		var pedido2 = new Pedido(null, LocalDate.now(), categoriadb2.getProdutos());
+		var pedido2 = new Pedido(null, null, categoriadb2.getProdutos());
 
 
 		pedidoRepository.save(pedido);
 		pedidoRepository.save(pedido2);
 
 		
-		System.out.println(pedidoRepository.findAll());
+//		System.out.println(pedidoRepository.findAll());
 	}
 	
 	public void buscarPorNome() {
@@ -125,6 +125,17 @@ public class Principal {
 		
 		if (!buscarProduto.isEmpty()) {
 			System.out.println(buscarProduto);
+		} else {
+			System.out.println("Produto não encontrado.");
+		}
+	}
+	
+	public void buscarEntregaNula() {
+		System.out.println("Produtos sem data de entrega:");
+		List<Pedido> buscarPedidos = pedidoRepository.findAllByDataIsNull();
+		
+		if (!buscarPedidos.isEmpty()) {
+			buscarPedidos.forEach(System.out::println);
 		} else {
 			System.out.println("Produto não encontrado.");
 		}

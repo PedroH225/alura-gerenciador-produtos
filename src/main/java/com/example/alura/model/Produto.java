@@ -40,7 +40,6 @@ public class Produto {
 	private Fornecedor fornecedor;
 
 	public Produto() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Produto(String id, String nome, Double preco, Categoria categoria, Fornecedor fornecedor) {

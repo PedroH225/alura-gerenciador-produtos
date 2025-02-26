@@ -41,8 +41,8 @@ public class GerenciadorPedidosApplication implements CommandLineRunner {
 		Principal principal = new Principal(categoriaRepository, produtoRepository, 
 				pedidoRepository, fornecedorRepository);
 		
-//		principal.registrar();
-		principal.buscarPorTrecho();
+		principal.registrar();
+		principal.buscarEntregaNula();
 		
 	}
 
