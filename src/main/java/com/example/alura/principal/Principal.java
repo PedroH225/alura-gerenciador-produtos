@@ -328,4 +328,29 @@ public class Principal {
 		}
 	}
 	
+	public void top3MaisCaros() {
+		System.out.println("Top 3 produtos mais caros:");
+		var buscarProdutos = produtoRepository.findTop3ByOrderByPrecoDesc();
+		
+		if (!buscarProdutos.isEmpty()) {
+			buscarProdutos.forEach(System.out::println);
+		} else {
+			System.out.println("Nenhum produto encontrado!");
+		}
+	}
+	
+	public void top5MaisBaratos() {
+		System.out.println("Top 5 produtos mais baratos:");
+		var buscarProdutos = produtoRepository.findTop5ByOrderByPreco();
+		
+		if (!buscarProdutos.isEmpty()) {
+			buscarProdutos.forEach(System.out::println);
+		} else {
+			System.out.println("Nenhum produto encontrado!");
+		}
+	}
 }
+
+
+
+
