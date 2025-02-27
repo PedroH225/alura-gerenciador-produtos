@@ -3,9 +3,11 @@ package com.example.alura.principal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+import com.example.alura.model.Categoria;
 import com.example.alura.repository.CategoriaRepository;
 import com.example.alura.repository.FornecedorRepository;
 import com.example.alura.repository.PedidoRepository;
@@ -140,6 +142,13 @@ public class PrincipalJPQL {
 			System.out.println("Categoria não encontrada ou sem produtos.");
 		}
 		
+	}
+
+	public void categoriaMais10Produtos() {
+		System.out.println("Categorias com mais de 10 produtos: ");
+		List<Categoria> categorias = categoriaRepository.categoriaMais10Produtos();
+		
+		categorias.forEach(c -> System.out.println(c.getNome()));
 	}
 }
 

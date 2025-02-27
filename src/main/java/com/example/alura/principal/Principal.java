@@ -59,37 +59,39 @@ public class Principal {
 	    var produto8 = new Produto(null, "Serra Elétrica", 1200.00, categoria4, fornecedor4);
 	    var produto9 = new Produto(null, "Mouse", 150.00, categoria2, fornecedor2);
 	    var produto10 = new Produto(null, "Teclado", 250.00, categoria2, fornecedor2);
-	    
+
+	    var produto11 = new Produto(null, "Smartphone", 2500.00, categoria2, fornecedor2);
+	    var produto12 = new Produto(null, "Fone Bluetooth", 300.00, categoria2, fornecedor2);
+	    var produto13 = new Produto(null, "Tablet", 1800.00, categoria2, fornecedor2);
+	    var produto14 = new Produto(null, "Carregador Portátil", 150.00, categoria2, fornecedor2);
+	    var produto15 = new Produto(null, "Caixa de Som", 400.00, categoria2, fornecedor2);
+	    var produto16 = new Produto(null, "Webcam", 600.00, categoria2, fornecedor2);
+	    var produto17 = new Produto(null, "Impressora", 1200.00, categoria2, fornecedor2);
+
 	    categoria1.setProdutos(Arrays.asList(produto3, produto4));
-	    categoria2.setProdutos(Arrays.asList(produto1, produto2, produto9, produto10));
+	    categoria2.setProdutos(Arrays.asList(produto1, produto2, produto9, produto10, produto11, produto12, produto13, produto14, produto15, produto16, produto17));
 	    categoria3.setProdutos(Arrays.asList(produto5, produto6));
 	    categoria4.setProdutos(Arrays.asList(produto7, produto8));
 
-	    var categoriadb1 = categoriaRepository.save(categoria1);
-	    var categoriadb2 = categoriaRepository.save(categoria2);
-	    var categoriadb3 = categoriaRepository.save(categoria3);
-	    var categoriadb4 = categoriaRepository.save(categoria4);
+	    categoriaRepository.save(categoria1);
+	    categoriaRepository.save(categoria2);
+	    categoriaRepository.save(categoria3);
+	    categoriaRepository.save(categoria4);	   
 
-	    var pedido1 = new Pedido(null, LocalDate.now(), categoriadb2.getProdutos());
-	    var pedido2 = new Pedido(null, null, Arrays.asList(categoriadb2.getProdutos().get(1)));
-	    var pedido3 = new Pedido(null, LocalDate.now(), categoriadb1.getProdutos());
-	    var pedido4 = new Pedido(null, LocalDate.of(2023, 12, 15), Arrays.asList(categoriadb3.getProdutos().get(0)));
-	    var pedido5 = new Pedido(null, null, Arrays.asList(categoriadb4.getProdutos().get(1)));
-	    var pedido6 = new Pedido(null, LocalDate.of(2024, 1, 20), Arrays.asList(produto6, produto7));
-	    var pedido7 = new Pedido(null, LocalDate.now(), Arrays.asList(produto5, produto8));
+	    var pedidos = Arrays.asList(
+	            new Pedido(null, LocalDate.now(), Arrays.asList(produto1, produto2, produto9, produto10)),
+	            new Pedido(null, null, Arrays.asList(produto11, produto12)),
+	            new Pedido(null, LocalDate.now(), Arrays.asList(produto3, produto4)),
+	            new Pedido(null, LocalDate.of(2023, 12, 15), Arrays.asList(produto5)),
+	            new Pedido(null, null, Arrays.asList(produto8)),
+	            new Pedido(null, LocalDate.of(2024, 1, 20), Arrays.asList(produto6, produto7)),
+	            new Pedido(null, LocalDate.now(), Arrays.asList(produto13, produto14, produto15, produto16, produto17))
+	        );
 
-	    pedidoRepository.save(pedido1);
-	    pedidoRepository.save(pedido2);
-	    pedidoRepository.save(pedido3);
-	    pedidoRepository.save(pedido4);
-	    pedidoRepository.save(pedido5);
-	    pedidoRepository.save(pedido6);
-	    pedidoRepository.save(pedido7);
-
-	    var pedidos = pedidoRepository.findAll();
-	    
-	    pedidos.forEach(System.out::println);
+	        pedidoRepository.saveAll(pedidos);
+		
 	}
+
 	
 	public void buscarPorNome() {
 		System.out.println("Digite o nome do produto:");

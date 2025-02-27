@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.example.alura.model.Categoria;
 import com.example.alura.model.Pedido;
 import com.example.alura.model.Produto;
 
@@ -37,6 +38,7 @@ public interface ProdutoRepositoryJPQL extends JpaRepository<Produto, String> {
 	
 	@Query("SELECT COUNT(p) FROM Categoria c JOIN c.produtos p WHERE c.nome = :nome")
 	Optional<Integer> countProdutos(String nome);
+	
 }
 
 

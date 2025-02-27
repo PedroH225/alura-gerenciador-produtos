@@ -52,7 +52,7 @@ public class GerenciadorPedidosApplication implements CommandLineRunner {
 		principal.registrar();
 		
 		System.out.println();
-		principalJPQL.countProdutoCategoria();
+		principalJPQL.categoriaMais10Produtos();
 		
 	}
 
