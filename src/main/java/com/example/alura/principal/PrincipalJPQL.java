@@ -150,6 +150,19 @@ public class PrincipalJPQL {
 		
 		categorias.forEach(c -> System.out.println(c.getNome()));
 	}
+	
+	public void buscarNomeOuCategoria() {
+		System.out.println("Digite um produto ou categoria:");
+		String nomeCat = leitura.nextLine();
+		
+		var buscarProdutos = produtoRepository.filtrarNomeOuCategoria(nomeCat);
+		
+		if (!buscarProdutos.isEmpty()) {
+			buscarProdutos.forEach(System.out::println);
+		} else {
+			System.out.println("Nenhum produto encontrado!");
+		}
+	}
 }
 
 

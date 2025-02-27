@@ -39,6 +39,9 @@ public interface ProdutoRepositoryJPQL extends JpaRepository<Produto, String> {
 	@Query("SELECT COUNT(p) FROM Categoria c JOIN c.produtos p WHERE c.nome = :nome")
 	Optional<Integer> countProdutos(String nome);
 	
+	@Query("SELECT p from Produto p JOIN p.categoria c WHERE p.nome = :nome OR c.nome = :nome")
+	List<Produto> filtrarNomeOuCategoria(String nome);
+	
 }
 
 
