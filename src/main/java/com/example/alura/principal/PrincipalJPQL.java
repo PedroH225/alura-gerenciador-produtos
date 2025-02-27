@@ -64,6 +64,20 @@ public class PrincipalJPQL {
 		
 	}
 	
+	public void buscarPorPrimeiraLetra() {
+		System.out.println("Digite a primeira letra do produto desejado:");
+		String letra = leitura.nextLine();
+		var produtos = produtoRepository.buscarPorPrimeiraLetra(letra);
+		
+		if (!produtos.isEmpty()) {
+			
+			produtos.forEach(System.out::println);
+		} else {
+			System.out.println("Nenhum produto encontrado!");
+		}
+		
+	}
+	
 }
 
 

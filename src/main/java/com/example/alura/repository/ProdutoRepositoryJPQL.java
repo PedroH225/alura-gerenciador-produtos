@@ -19,4 +19,7 @@ public interface ProdutoRepositoryJPQL extends JpaRepository<Produto, String> {
 	
 	@Query("SELECT p FROM Produto p ORDER BY p.preco DESC")
 	List<Produto> ordenarProdutosDesc();
+	
+	@Query("SELECT p FROM Produto p WHERE p.nome LIKE :letra%")
+	List<Produto> buscarPorPrimeiraLetra(String letra);
 }
