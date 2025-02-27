@@ -1,11 +1,13 @@
 package com.example.alura.principal;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 import com.example.alura.repository.CategoriaRepository;
 import com.example.alura.repository.FornecedorRepository;
 import com.example.alura.repository.PedidoRepository;
-import com.example.alura.repository.ProdutoRepository;
 import com.example.alura.repository.ProdutoRepositoryJPQL;
 
 public class PrincipalJPQL {
@@ -78,6 +80,33 @@ public class PrincipalJPQL {
 		
 	}
 	
+	public void buscarPorPeriodo() {
+		System.out.println("Digite uma data (dd/MM/yyyy):");
+		String dataString = leitura.nextLine();
+
+		System.out.println("Digite outra data (dd/MM/yyyy):");
+		String dataString2 = leitura.nextLine();
+
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+		try {
+			LocalDate data = LocalDate.parse(dataString, dtf);
+			LocalDate data2 = LocalDate.parse(dataString2, dtf);
+			
+			var buscarProdutos = produtoRepository.buscarPorPeriodo(data, data2);
+				if (!buscarProdutos.isEmpty()) {
+					System.out.println(
+							"Pedidos com data de entrega entre " + dataString + " e " + dataString2 + ":");
+
+					buscarProdutos.forEach(System.out::println);
+				} else {
+					System.out.println("Nenhum pedido encontrado.");
+				}
+			
+		} catch (DateTimeParseException e) {
+			System.out.println("Data inválida: " + dataString);
+		}
+	}
 }
 
 

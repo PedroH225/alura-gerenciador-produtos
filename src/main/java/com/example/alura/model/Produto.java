@@ -33,7 +33,7 @@ public class Produto {
 	private Categoria categoria;
 	
 	@ManyToMany(mappedBy = "produtos")
-	private List<Pedido> pedido;
+	private List<Pedido> pedidos;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinColumn(name = "fornecedor_id")
