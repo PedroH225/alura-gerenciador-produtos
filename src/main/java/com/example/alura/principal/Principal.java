@@ -349,6 +349,20 @@ public class Principal {
 			System.out.println("Nenhum produto encontrado!");
 		}
 	}
+	
+	public void top5MaisBaratosPorCategoria() {
+		System.out.println("Digite uma categoria:");
+		String categoria = leitura.nextLine();
+		
+		var buscarProdutos = produtoRepository.findTop5ByCategoriaNomeContainingIgnoreCaseOrderByPreco(categoria);
+		
+		if (!buscarProdutos.isEmpty()) {
+			System.out.println("Top 5 produtos mais baratos da categoria " + categoria + ":");
+			buscarProdutos.forEach(System.out::println);
+		} else {
+			System.out.println("Nenhum produto encontrado!");
+		}
+	}
 }
 
 

@@ -32,5 +32,7 @@ public interface ProdutoRepository extends JpaRepository<Produto, String>{
 	List<Produto> findTop3ByOrderByPrecoDesc();
 	
 	List<Produto> findTop5ByOrderByPreco();
+	
+	List<Produto> findTop5ByCategoriaNomeContainingIgnoreCaseOrderByPreco(String Categoria);
 
 }

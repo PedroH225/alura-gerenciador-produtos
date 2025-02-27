@@ -44,10 +44,7 @@ public class GerenciadorPedidosApplication implements CommandLineRunner {
 		principal.registrar();
 		
 		System.out.println();
-		principal.top3MaisCaros();
-		
-		System.out.println();
-		principal.top5MaisBaratos();
+		principal.top5MaisBaratosPorCategoria();
 		
 	}
 
