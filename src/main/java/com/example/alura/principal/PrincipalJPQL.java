@@ -51,7 +51,18 @@ public class PrincipalJPQL {
 		}
 		
 	}
-	
+
+	public void ordenarProdutosDesc() {
+		var produtos = produtoRepository.ordenarProdutosDesc();
+		
+		if (!produtos.isEmpty()) {
+			System.out.println("Produtos ordenados de forma decrescente:");
+			produtos.forEach(System.out::println);
+		} else {
+			System.out.println("Nenhum produto encontrado!");
+		}
+		
+	}
 	
 }
 
