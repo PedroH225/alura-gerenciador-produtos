@@ -163,6 +163,15 @@ public class PrincipalJPQL {
 			System.out.println("Nenhum produto encontrado!");
 		}
 	}
+
+	public void top5MaisCaros() {
+		System.out.println("Top 5 produtos mais caros: ");
+		var top5Produtos = produtoRepository.top5MaisCaros();
+		
+		top5Produtos.forEach(System.out::println);
+		
+	}
+	
 }
 
 

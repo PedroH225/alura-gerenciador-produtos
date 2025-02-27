@@ -42,6 +42,9 @@ public interface ProdutoRepositoryJPQL extends JpaRepository<Produto, String> {
 	@Query("SELECT p from Produto p JOIN p.categoria c WHERE p.nome = :nome OR c.nome = :nome")
 	List<Produto> filtrarNomeOuCategoria(String nome);
 	
+	@Query(value = "SELECT * FROM produtos ORDER BY produtos.valor DESC LIMIT 5", nativeQuery = true)
+	List<Produto> top5MaisCaros();
+	
 }
 
 

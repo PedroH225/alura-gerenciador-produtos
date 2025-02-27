@@ -52,7 +52,7 @@ public class GerenciadorPedidosApplication implements CommandLineRunner {
 		principal.registrar();
 		
 		System.out.println();
-		principalJPQL.buscarNomeOuCategoria();
+		principalJPQL.top5MaisCaros();
 		
 	}
 
