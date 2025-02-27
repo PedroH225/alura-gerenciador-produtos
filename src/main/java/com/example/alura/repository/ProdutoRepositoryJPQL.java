@@ -13,4 +13,7 @@ public interface ProdutoRepositoryJPQL extends JpaRepository<Produto, String> {
 
 	@Query("SELECT p FROM Produto p WHERE p.preco >= :valor")
 	List<Produto> buscarPorValor(Double valor);
+	
+	@Query("SELECT p FROM Produto p ORDER BY p.preco")
+	List<Produto> ordenarProdutos();
 }

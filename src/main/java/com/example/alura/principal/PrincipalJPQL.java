@@ -40,6 +40,18 @@ public class PrincipalJPQL {
 		}
 	}
 	
+	public void ordenarProdutos() {
+		var produtos = produtoRepository.ordenarProdutos();
+		
+		if (!produtos.isEmpty()) {
+			System.out.println("Produtos ordenados de forma crescente:");
+			produtos.forEach(System.out::println);
+		} else {
+			System.out.println("Nenhum produto encontrado!");
+		}
+		
+	}
+	
 	
 }
 
