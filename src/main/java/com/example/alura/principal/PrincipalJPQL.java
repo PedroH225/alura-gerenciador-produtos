@@ -3,6 +3,7 @@ package com.example.alura.principal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Optional;
 import java.util.Scanner;
 
 import com.example.alura.repository.CategoriaRepository;
@@ -111,6 +112,20 @@ public class PrincipalJPQL {
 	public void mediaPrecoProdutos() {
 		Double media = produtoRepository.mediaPrecoProdutos();
 		System.out.println("Média de preço dos produtos: " + media);
+	}
+	
+	public void maximoPrecoProduto() {
+		System.out.println("Digite uma categoria:");
+		String nome = leitura.nextLine();
+		Optional<Double> maximo = produtoRepository.precoMaximoCategoria(nome);
+		
+		if (maximo.isPresent()) {
+			System.out.println("Preço máximo de um produto da categoria " + nome + ": " + maximo.get());
+
+		} else {
+			System.out.println("Categoria não encontrada ou sem produtos.");
+		}
+		
 	}
 }
 

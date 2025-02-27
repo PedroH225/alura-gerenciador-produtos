@@ -2,6 +2,7 @@ package com.example.alura.repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -28,8 +29,11 @@ public interface ProdutoRepositoryJPQL extends JpaRepository<Produto, String> {
 	@Query("SELECT ped FROM Produto p JOIN p.pedidos ped WHERE ped.data BETWEEN :data AND :data2")
 	List<Pedido> buscarPorPeriodo(LocalDate data, LocalDate data2);
 	
-	@Query("SELECT AVG(p.preco) from Produto p")
+	@Query("SELECT AVG(p.preco) FROM Produto p")
 	Double mediaPrecoProdutos();
+	
+	@Query("SELECT MAX(p.preco) FROM Categoria c JOIN c.produtos p WHERE c.nome = :nome")
+	Optional<Double> precoMaximoCategoria(String nome);
 }
 
 
