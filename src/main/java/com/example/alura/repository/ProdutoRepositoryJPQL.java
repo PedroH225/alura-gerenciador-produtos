@@ -34,7 +34,11 @@ public interface ProdutoRepositoryJPQL extends JpaRepository<Produto, String> {
 	
 	@Query("SELECT MAX(p.preco) FROM Categoria c JOIN c.produtos p WHERE c.nome = :nome")
 	Optional<Double> precoMaximoCategoria(String nome);
+	
+	@Query("SELECT COUNT(p) FROM Categoria c JOIN c.produtos p WHERE c.nome = :nome")
+	Optional<Integer> countProdutos(String nome);
 }
+
 
 
 

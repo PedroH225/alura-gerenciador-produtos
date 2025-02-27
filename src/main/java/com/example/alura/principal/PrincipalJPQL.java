@@ -127,6 +127,20 @@ public class PrincipalJPQL {
 		}
 		
 	}
+
+	public void countProdutoCategoria() {
+		System.out.println("Digite uma categoria:");
+		String nome = leitura.nextLine();
+		Optional<Integer> count = produtoRepository.countProdutos(nome);
+		
+		if (count.isPresent()) {
+			System.out.printf("A categoria %s possui: %d produto(s) registrado(s).%n", nome, count.get());
+
+		} else {
+			System.out.println("Categoria não encontrada ou sem produtos.");
+		}
+		
+	}
 }
 
 
