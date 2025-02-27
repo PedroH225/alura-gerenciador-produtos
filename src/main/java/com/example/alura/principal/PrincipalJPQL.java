@@ -107,6 +107,11 @@ public class PrincipalJPQL {
 			System.out.println("Data inválida: " + dataString);
 		}
 	}
+
+	public void mediaPrecoProdutos() {
+		Double media = produtoRepository.mediaPrecoProdutos();
+		System.out.println("Média de preço dos produtos: " + media);
+	}
 }
 
 

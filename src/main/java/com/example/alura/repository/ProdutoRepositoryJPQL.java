@@ -27,4 +27,10 @@ public interface ProdutoRepositoryJPQL extends JpaRepository<Produto, String> {
 
 	@Query("SELECT ped FROM Produto p JOIN p.pedidos ped WHERE ped.data BETWEEN :data AND :data2")
 	List<Pedido> buscarPorPeriodo(LocalDate data, LocalDate data2);
+	
+	@Query("SELECT AVG(p.preco) from Produto p")
+	Double mediaPrecoProdutos();
 }
+
+
+
